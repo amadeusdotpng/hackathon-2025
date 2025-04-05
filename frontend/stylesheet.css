@@ -34,6 +34,32 @@ body {
     text-align: center;
 
     visibility: visible;
+    padding-top: 2em;
+}
+
+.weather_container h1, .lastfm_container h1 {
+    font-size: 3.5em;
+}
+
+.weather_container h2 {
+    margin-bottom: 0.25em;
+    font-size: 3em;
+}
+
+.weather_container h3 {
+    margin-top: 0.25em;
+    font-size: 2em;
+}
+
+.weather_info {
+    width: 49.5%;
+
+    margin: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /*

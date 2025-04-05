@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/frontend/stylesheet.css">
+	<link rel="icon" type="image/icon" href="/frontend/assets/icon.png">
+	<title>DyTempest</title>
+</head>
+<body>
+
+<div class="master_container">
+    <div class="weather_container">
+        <h1>Current Weather</h1>
+        <img src="/frontend/assets/missing-content.png">
+        <h2>Currently {{temp_f}}°F</h2>
+        <h3>Feels Like: {{feelslike_f}}°F</h3>
+        <div class="weather_info">
+            <div class="water_info">
+                <p>Precipitation (in): {{precip_in}}</p>
+                <p>Humidity (%): {{humidity}}</p>
+            </div>
+            <div class="air_info">
+                <p>Wind (mph): {{wind_speed}}</p>
+                <p>Cloud Coverage (%): {{cloud_coverage}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="lastfm_container">
+        <h1>Music For You</h1>
+        <p>todo</p>
+    </div>
+</div>
+
+</body>
+</html>
+
