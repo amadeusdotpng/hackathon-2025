@@ -14,7 +14,7 @@ mood_names = ["sad", "mad", "happy", "excited"]
 
 ranges = {
     weather_detail_names[0]: (-25, 50),
-    weather_detail_names[1]: (0, 110),
+    weather_detail_names[1]: (0, 45),
     weather_detail_names[2]: (0, 100),
     weather_detail_names[3]: (0, 1),
 }
@@ -22,9 +22,9 @@ ranges = {
 ideals = {
     mood_names[0]: {
         weather_detail_names[0]: 20,
-        weather_detail_names[1]: 20,
+        weather_detail_names[1]: 8,
         weather_detail_names[2]: 80,
-        weather_detail_names[3]: 0.1,
+        weather_detail_names[3]: 0.4,
     },
     mood_names[1]: {
         weather_detail_names[0]: 35,
@@ -47,10 +47,10 @@ ideals = {
 }
 
 weights = {
-    mood_names[0]: numpy.array([1, 1, 1, 1]),
-    mood_names[1]: numpy.array([1, 1, 1, 1]),
-    mood_names[2]: numpy.array([1, 1, 1, 1]),
-    mood_names[3]: numpy.array([1, 1, 1, 1]),
+    mood_names[0]: numpy.array([0.15, 0.35, 0.3, 0.2]),
+    mood_names[1]: numpy.array([0.3, 0.3, 0.2, 0.2]),
+    mood_names[2]: numpy.array([0.25, 0.25, 0.25, 0.25]),
+    mood_names[3]: numpy.array([0.2, 0.3, 0.3, 0.2]),
 }
 
 tracks = {
@@ -95,11 +95,14 @@ def weather_to_music(weather, music_key):
 
             weather_detail_range = max_weather_detail - min_weather_detail
 
-            if weather_detail - min_weather_detail < 0.1 * weather_detail_range:
-                noise = random.uniform(0.01, 0.5)
+            noise_range = 0.25
+            noise_shift = 0.075
+
+            if weather_detail - min_weather_detail < noise_range * weather_detail_range:
+                noise = random.uniform(noise_shift, noise_range)
                 weather_detail += noise * weather_detail_range
-            elif max_weather_detail - weather_detail < 0.1 * weather_detail_range:
-                noise = random.uniform(0.01, 0.5)
+            elif max_weather_detail - weather_detail < noise_range * weather_detail_range:
+                noise = random.uniform(noise_shift, noise_range)
                 weather_detail -= noise * weather_detail_range
 
             ideal_target = ideal_weather_detail - min_weather_detail
@@ -119,6 +122,7 @@ def weather_to_music(weather, music_key):
 
     mood_value_probabilities = [(mood_names[i], mood_value_probabilities[i]) for i in range(len(mood_value_probabilities))]
     mood_value_probabilities.sort(key = lambda e : e[1])
+    mood_value_probabilities.reverse()
 
     sum_probabilities = 0
     chosen_mood_values = []
