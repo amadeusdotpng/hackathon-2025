@@ -5,8 +5,9 @@ html, body {
 }
 
 body {
-	background-color: #80b0ff;
+	background-color: #11111b;
 	font-family: Consolas, Verdana;
+    color: #cdd6f4;
 }
 
 
@@ -28,13 +29,14 @@ body {
     width: 49.5%;
     height: 80%;
 
-    background-color: #ffffff44;
+    background-color: #1e1e2e;
     border-radius: 0.5em;
 
     text-align: center;
 
     visibility: visible;
     padding-top: 2em;
+    box-shadow: 0px 0px 1em #7287fd;
 }
 
 .weather_container h1, .lastfm_container h1 {
@@ -42,34 +44,78 @@ body {
 }
 
 .weather_container h2 {
-    margin-bottom: 0.25em;
+    margin-top: 0.0em;
     font-size: 3em;
 }
 
 .weather_container h3 {
+    margin-bottom: 0.25em;
     margin-top: 0.25em;
     font-size: 2em;
 }
 
+.weather_container h4 {
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
+    font-size: 1.25em;
+}
+
+.weather_container img {
+    width: 15em;
+    height: auto;
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
 .weather_info {
-    width: 49.5%;
+    width: 75%;
 
     margin: auto;
+    margin-top: 3em;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    font-size: 1.25em;
 }
 
-/*
-.lastfm_container {
-    width: 49.5%;
+.tracks_container {
+    width: 100%;
     height: 80%;
-    background-color: #ffffff44;
-
-    text-align: center;
-
-    visibility: visible;
+    overflow-y: scroll;
 }
-*/
+
+.track_container {
+    width: 75%;
+    margin: auto;
+    margin-bottom: 0.25em;
+    text-align: left;
+    padding: 0.75em 1.25em;
+    background-color: #8caaee;
+    border-radius: 0.5em;
+}
+
+.track_container:hover {
+    background-color: #b7bdf8;
+}
+
+.track_container a:link {
+    font-size: 1.25em;
+    margin-top: 0em;
+    margin-bottom: 0.25em;
+    color: #363a4f;
+}
+
+.track_container a:visited {
+    color: #585b70;
+}
+
+.track_container p {
+    font-size: 1em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    color: #494d64;
+}
+

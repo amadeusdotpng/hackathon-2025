@@ -54,8 +54,8 @@ weights = {
 }
 
 tracks = {
-    mood_names[0]: [("Searows", "Keep+The+Rain"), ("Joji", "Glimpse+of+Us")],
-    mood_names[1]: [("Poppy", "They're+All+Around+Us"), ("Ado", "Usseewa")],
+    mood_names[0]: [("American+Football", "Never+Meant"), ("Joji", "Glimpse+of+Us")],
+    mood_names[1]: [("Poppy", "I+Disagree"), ("Ado", "Usseewa")],
     mood_names[2]: [("Pharrell+Williams", "Hug+Me"), ("Breakbot", "Baby+I'm+Yours")],
     mood_names[3]: [("Aaron+Smith", "Dancin+-+Krono+Remix"), ("The+Rah+Band", "Messages+from+the+Stars")],
 }
@@ -75,7 +75,7 @@ def index():
 
     music = weather_to_music(weather, music_key)
 
-    return render_template("index.html", current_data = weather)
+    return render_template("index.html", current_data=weather, tracks=music["similartracks"]['track'],)
 
 def weather_to_music(weather, music_key):
     mood_values = []
@@ -140,8 +140,9 @@ def weather_to_music(weather, music_key):
     chosen_mood_value_index = random.choices(range(len(chosen_mood_values)), weights = chosen_mood_value_probabilities.tolist(), k = 1)[0]
 
     (track_artist, track_name) = random.choice(tracks[chosen_mood_values[chosen_mood_value_index]])
+    # (track_artist, track_name) = tracks['mad'][0]
 
-    music_request = requests.get(f"https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist={track_artist}&track={track_name}&api_key={music_key}&format=json")
+    music_request = requests.get(f"https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist={track_artist}&track={track_name}&api_key={music_key}&format=json&limit=18")
     music = json.loads(music_request.text)
 
     return music

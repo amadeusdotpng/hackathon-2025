@@ -11,9 +11,10 @@
 <div class="master_container">
     <div class="weather_container">
         <h1>Current Weather</h1>
-        <img src="/frontend/assets/missing-content.png">
-        <h2>Currently {{current_data["temp_f"]}}°F</h2>
-        <h3>Feels Like: {{current_data["feelslike_f"]}}°F</h3>
+        <img src="/frontend/assets/weather_icons/{{"day" if current_data["is_day"] else "night"}}/{{current_data["condition"]["code"]}}.svg">
+        <h2>{{current_data["condition"]["text"]}}</h2>
+        <h3>Currently {{current_data["temp_f"]}}°F</h2>
+        <h4>Feels Like {{current_data["feelslike_f"]}}°F</h3>
         <div class="weather_info">
             <div class="water_info">
                 <p>Precipitation: {{current_data["precip_mm"]}} mm</p>
@@ -27,7 +28,14 @@
     </div>
     <div class="lastfm_container">
         <h1>Music For You</h1>
-        <p>todo</p>
+        <div class="tracks_container">
+        {% for track in tracks %}
+            <div class="track_container">
+                <a href={{track["url"]}}>{{track["name"]}}<a>
+                <p>{{track["artist"]["name"]}}</p>
+            </div>
+        {% endfor %}
+        </div>
     </div>
 </div>
 
