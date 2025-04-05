@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, render_template, request
 import json
 import numpy
 import requests
@@ -54,11 +54,13 @@ def index():
     # location = request.args.get("location")
 
     weather_request = requests.get("https://api.weatherapi.com/v1/forecast.json?key=38011b547af74eda9bc61431250504&q=auto:ip")
-    weather = json.loads(weather_request.text)["current"]
+    weather_data = json.loads(weather_request.text)
+    current_data = weather_data["current"]
+    hour_data = weather_data["forecast"]
 
-    music = weather_to_music(weather)
+    # music = weather_to_music(weather)
 
-    return "Hello, World!"
+    return render_template("index.html", current_data=current_data)
 
 def weather_to_music(weather):
     mood_values = []

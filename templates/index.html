@@ -12,16 +12,16 @@
     <div class="weather_container">
         <h1>Current Weather</h1>
         <img src="/frontend/assets/missing-content.png">
-        <h2>Currently {{temp_f}}°F</h2>
-        <h3>Feels Like: {{feelslike_f}}°F</h3>
+        <h2>Currently {{current_data["temp_f"]}}°F</h2>
+        <h3>Feels Like: {{current_data["feelslike_f"]}}°F</h3>
         <div class="weather_info">
             <div class="water_info">
-                <p>Precipitation (in): {{precip_in}}</p>
-                <p>Humidity (%): {{humidity}}</p>
+                <p>Precipitation: {{current_data["precip_mm"]}} mm</p>
+                <p>Humidity: {{current_data["humidity"]}}%</p>
             </div>
             <div class="air_info">
-                <p>Wind (mph): {{wind_speed}}</p>
-                <p>Cloud Coverage (%): {{cloud_coverage}}</p>
+                <p>Wind: {{current_data["wind_mph"]}} mph</p>
+                <p>Cloud Coverage: {{current_data["cloud"]}}%</p>
             </div>
         </div>
     </div>
