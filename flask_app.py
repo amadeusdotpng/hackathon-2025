@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import json
 import numpy
 import random
@@ -66,8 +66,10 @@ def index():
 
     weather_key_file = open(data + "weather-key.txt")
     weather_key = weather_key_file.read()
+    user_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr);
+    print(user_ip);
 
-    weather_request = requests.get(f"https://api.weatherapi.com/v1/forecast.json?key={weather_key}&q=auto:ip")
+    weather_request = requests.get(f"https://api.weatherapi.com/v1/forecast.json?key={weather_key}&q={user_ip}")
     weather = json.loads(weather_request.text)["current"]
 
     music_key_file = open(data + "music-key.txt")
