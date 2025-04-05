@@ -95,11 +95,11 @@ def weather_to_music(weather, music_key):
 
             weather_detail_range = max_weather_detail - min_weather_detail
 
-            if min_weather_detail == weather_detail:
-                noise = random.uniform(0.01, 0.15)
+            if weather_detail - min_weather_detail < 0.1 * weather_detail_range:
+                noise = random.uniform(0.01, 0.5)
                 weather_detail += noise * weather_detail_range
-            elif max_weather_detail == weather_detail:
-                noise = random.uniform(0.01, 0.15)
+            elif max_weather_detail - weather_detail < 0.1 * weather_detail_range:
+                noise = random.uniform(0.01, 0.5)
                 weather_detail -= noise * weather_detail_range
 
             ideal_target = ideal_weather_detail - min_weather_detail
